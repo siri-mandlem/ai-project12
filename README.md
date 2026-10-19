@@ -19,7 +19,8 @@ The local default is SQLite at `instance\library.db`. The application creates
 its tables on startup. Set `DATABASE_URL` to a PostgreSQL connection string to
 use PostgreSQL; both `postgres://` and `postgresql://` URLs are supported.
 If a provider returns a `postgresql+psycopg://` URL, the app rewrites it to use
-the installed Psycopg 2 driver automatically.
+the installed Psycopg 2 driver automatically. Psycopg 3 is also installed to
+support deployments that provide that driver-specific URL without rewriting.
 
 ## Deploy to Render
 
