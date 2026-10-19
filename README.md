@@ -18,6 +18,8 @@ python -m backend.app
 The local default is SQLite at `instance\library.db`. The application creates
 its tables on startup. Set `DATABASE_URL` to a PostgreSQL connection string to
 use PostgreSQL; both `postgres://` and `postgresql://` URLs are supported.
+If a provider returns a `postgresql+psycopg://` URL, the app rewrites it to use
+the installed Psycopg 2 driver automatically.
 
 ## Deploy to Render
 

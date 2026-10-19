@@ -3,10 +3,23 @@ import unittest
 
 from backend import db
 from backend.app import create_app
+from backend.config import normalize_database_url
 from backend.models import Book, Issue
 
 
 class LibraryAppSmokeTests(unittest.TestCase):
+    def test_postgres_driver_url_uses_installed_psycopg2(self):
+        self.assertEqual(
+            normalize_database_url(
+                "postgresql+psycopg://reader:secret@db.example/library"
+            ),
+            "postgresql+psycopg2://reader:secret@db.example/library",
+        )
+        self.assertEqual(
+            normalize_database_url("postgres://reader:secret@db.example/library"),
+            "postgresql://reader:secret@db.example/library",
+        )
+
     def setUp(self):
         self.temp_dir = tempfile.TemporaryDirectory()
         self.app = create_app(
