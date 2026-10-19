@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">Your library account</p>
+        <h1>Welcome, {{ current_user.username }}.</h1>
+    </div>
+    <a class="button" href="/issue-book">Borrow a book</a>
+</div>
+<div class="stats">
+    <section class="card"><span class="stat">{{ available_books }}</span><span>books available</span></section>
+    <section class="card"><span class="stat">{{ active_issues|length }}</span><span>books checked out</span></section>
+</div>
+<section class="card">
+    <div class="section-heading">
+        <h2>Your current loans</h2>
+        <a href="/view-issued-books">View all</a>
+    </div>
+    {% if active_issues %}
+        <ul class="loan-list">
+            {% for issue in active_issues %}
+                <li><strong>{{ issue.book.title }}</strong><span>Borrowed {{ issue.issue_date.strftime("%b %d, %Y") }}</span></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You do not have any books checked out.</p>
+    {% endif %}
+</section>
+<div class="actions">
+    <a class="button secondary" href="/add-book">Add a book</a>
+    <a class="button secondary" href="/fine-calculator">Fine calculator</a>
+</div>
+{% endblock %}

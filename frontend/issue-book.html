@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Borrow a book{% endblock %}
+{% block content %}
+<section class="card narrow">
+    <h1>Borrow a book</h1>
+    {% if books %}
+        <form method="post">
+            <label for="book_id">Available book</label>
+            <select id="book_id" name="book_id" required>
+                {% for book in books %}
+                    <option value="{{ book.id }}">{{ book.title }} — {{ book.author }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Check out</button>
+        </form>
+    {% else %}
+        <p>There are no books available to borrow right now.</p>
+        <a href="/list-books">Browse the catalog</a>
+    {% endif %}
+</section>
+{% endblock %}

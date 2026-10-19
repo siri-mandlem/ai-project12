@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}My loans{% endblock %}
+{% block content %}
+<p class="eyebrow">Your library account</p>
+<h1>My loans</h1>
+{% if issues %}
+    <div class="card table-wrap">
+        <table>
+            <thead><tr><th>Title</th><th>Author</th><th>Borrowed</th><th></th></tr></thead>
+            <tbody>
+                {% for issue in issues %}
+                    <tr>
+                        <td>{{ issue.book.title }}</td>
+                        <td>{{ issue.book.author }}</td>
+                        <td>{{ issue.issue_date.strftime("%b %d, %Y") }}</td>
+                        <td>
+                            <form method="post" action="{{ url_for('main.return_book', issue_id=issue.id) }}">
+                                <button class="secondary" type="submit">Return</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p class="card">You have no books checked out.</p>
+{% endif %}
+{% endblock %}

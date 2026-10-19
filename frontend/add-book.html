@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Add a book{% endblock %}
+{% block content %}
+<section class="card narrow">
+    <h1>Add a book to the catalog</h1>
+    <form method="post">
+        <label for="title">Title</label>
+        <input id="title" name="title" maxlength="200" required>
+        <label for="author">Author</label>
+        <input id="author" name="author" maxlength="100" required>
+        <label for="isbn">ISBN</label>
+        <input id="isbn" name="isbn" maxlength="13" required>
+        <button type="submit">Add book</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Book catalog{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div><p class="eyebrow">Catalog</p><h1>All books</h1></div>
+    <a class="button" href="/add-book">Add a book</a>
+</div>
+{% if books %}
+    <div class="card table-wrap">
+        <table>
+            <thead><tr><th>Title</th><th>Author</th><th>ISBN</th></tr></thead>
+            <tbody>
+                {% for book in books %}
+                    <tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.isbn }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p class="card">The catalog is empty. Add the first book to get started.</p>
+{% endif %}
+{% endblock %}

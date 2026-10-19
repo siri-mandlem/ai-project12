@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Search books{% endblock %}
+{% block content %}
+<section>
+    <p class="eyebrow">Catalog</p>
+    <h1>Search books</h1>
+    <form class="search-form" method="get">
+        <label class="visually-hidden" for="q">Title, author, or ISBN</label>
+        <input id="q" name="q" value="{{ query }}" placeholder="Title, author, or ISBN">
+        <button type="submit">Search</button>
+    </form>
+    {% if query %}
+        <h2>Results for “{{ query }}”</h2>
+        {% if books %}
+            <div class="card table-wrap">
+                <table>
+                    <thead><tr><th>Title</th><th>Author</th><th>ISBN</th></tr></thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.isbn }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No matching books found.</p>
+        {% endif %}
+    {% endif %}
+</section>
+{% endblock %}

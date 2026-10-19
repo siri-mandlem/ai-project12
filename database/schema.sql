@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(64) NOT NULL UNIQUE,
+    password_hash VARCHAR(256) NOT NULL,
+    role VARCHAR(30) NOT NULL DEFAULT 'member'
+);
+
+CREATE TABLE IF NOT EXISTS books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    isbn VARCHAR(13) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS issues (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users (id),
+    book_id INTEGER NOT NULL REFERENCES books (id),
+    issue_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    return_date TIMESTAMP,
+    fine_amount NUMERIC(10, 2) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS fines (
+    id SERIAL PRIMARY KEY,
+    issue_id INTEGER NOT NULL UNIQUE REFERENCES issues (id),
+    amount NUMERIC(10, 2) NOT NULL,
+    payment_status BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS searches (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users (id),
+    query VARCHAR(255) NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    results JSON
+);
+
+CREATE INDEX IF NOT EXISTS ix_issues_user_return_date
+    ON issues (user_id, return_date);

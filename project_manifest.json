@@ -1,0 +1,91 @@
+{
+  "manifest_version": 1,
+  "project_name": "library-desk",
+  "backend": {
+    "framework": "Flask",
+    "application": "backend.app:app",
+    "files": [
+      "backend/__init__.py",
+      "backend/app.py",
+      "backend/config.py",
+      "backend/models.py",
+      "backend/requirements.txt",
+      "backend/routes.py"
+    ]
+  },
+  "frontend": {
+    "files": [
+      "frontend/add-book.html",
+      "frontend/base.html",
+      "frontend/dashboard.html",
+      "frontend/fine-calculator.html",
+      "frontend/index.html",
+      "frontend/issue-book.html",
+      "frontend/list-books.html",
+      "frontend/login.html",
+      "frontend/register.html",
+      "frontend/search-books.html",
+      "frontend/css/style.css",
+      "frontend/js/script.js",
+      "frontend/view-issued-books.html"
+    ],
+    "pages": [
+      "/",
+      "/add-book",
+      "/books",
+      "/dashboard",
+      "/fine-calculator",
+      "/issue-book",
+      "/login",
+      "/register",
+      "/search-books",
+      "/view-issued-books"
+    ]
+  },
+  "database": {
+    "schema_file": "database/schema.sql",
+    "tables": [
+      "books",
+      "fines",
+      "issues",
+      "searches",
+      "users"
+    ]
+  },
+  "api_contracts": [],
+  "dependencies": [
+    "Flask",
+    "Flask-SQLAlchemy",
+    "gunicorn",
+    "psycopg2-binary"
+  ],
+  "required_files": [
+    ".env.example",
+    ".gitignore",
+    "README.md",
+    "backend/__init__.py",
+    "backend/app.py",
+    "backend/config.py",
+    "backend/models.py",
+    "backend/requirements.txt",
+    "backend/routes.py",
+    "database/schema.sql",
+    "frontend/add-book.html",
+    "frontend/base.html",
+    "frontend/dashboard.html",
+    "frontend/fine-calculator.html",
+    "frontend/index.html",
+    "frontend/issue-book.html",
+    "frontend/list-books.html",
+    "frontend/login.html",
+    "frontend/register.html",
+    "frontend/search-books.html",
+    "frontend/css/style.css",
+    "frontend/js/script.js",
+    "frontend/view-issued-books.html",
+    "project_manifest.json",
+    "tests/test_smoke.py"
+  ],
+  "generation_status": "complete",
+  "generation_message": "Project files are aligned and ready for deployment."
+}
